@@ -26,8 +26,8 @@ const app = express();
 const httpServer = createServer(app);
 const io = new Server(httpServer, {
   cors: {
-    origin: process.env.ALLOWED_ORIGINS?.split(',') || ['*'],
-    credentials: true
+    origin: '*',
+    credentials: false
   },
   transports: ['websocket', 'polling']
 });
@@ -36,8 +36,8 @@ const io = new Server(httpServer, {
 app.use(express.json({ limit: '50mb' }));
 app.use(express.urlencoded({ limit: '50mb', extended: true }));
 app.use(cors({
-  origin: process.env.ALLOWED_ORIGINS?.split(',') || '*',
-  credentials: true
+  origin: '*',
+  credentials: false
 }));
 
 // Emit all active orders
